@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import Heading from './Heading';
 function Task() {
     const Arr = []
     const [Bio, setBio] = useState(Arr);
@@ -13,7 +13,6 @@ function Task() {
         return str;
     }
     const ID = (id) => {
-        console.log(id)
         const newArray = Bio.filter((elementFair) => {
             return elementFair.id !== id;
         });
@@ -31,46 +30,94 @@ function Task() {
         setBio(newArray);
     }
     let RemainingString = "";
+    let date = new Date();
     const Print = () => {
-        let date = new Date();
-        let id = date.getTime();
         let x = document.getElementById('Name');
-        let y = document.getElementById('Age');
-        let z = document.getElementById('Full');
-        let JsontoString = JSON.stringify(Bio);
-        JsontoString = removeSlash(JsontoString)
-        let onlyString = "";
-        if (JsontoString === "[]") {
-            onlyString = JsontoString.slice(0, JsontoString.length - 1);
-            RemainingString = RemainingString + onlyString + `{"id":${id},"myName":"${x.value}","Full":"${z.value}","myAge":"${y.value}"}]`;
-            setBio(JSON.parse(RemainingString));
+        let y = document.getElementById('date');
+        let z = document.getElementById('time');
+        if (x.value !== undefined || y.value != undefined || z.value !== undefined) {
+            let id = date.getTime();
+            let w = document.getElementById('Full');
+            let JsontoString = JSON.stringify(Bio);
+            JsontoString = removeSlash(JsontoString)
+            let onlyString = "";
+            if (JsontoString === "[]") {
+                onlyString = JsontoString.slice(0, JsontoString.length - 1);
+                RemainingString = RemainingString + onlyString + `{"id":${id},"myName":"${x.value}","Notes":"${w.value}","DeadLineTime":"${z.value}","DeadLineDate":"${y.value}"}]`;
+                setBio(JSON.parse(RemainingString));
+            }
+            else {
+                onlyString = JsontoString.slice(1, JsontoString.length - 1);
+                RemainingString = `[` + RemainingString + onlyString + `,{"id":${id},"myName":"${x.value}","Notes":"${w.value}","DeadLineTime":"${z.value}","Full":"${z.value}","DeadLineDate":"${y.value}"}]`;
+                setBio(JSON.parse(RemainingString));
+            }
+        } else {
+            alert('Enter Inputs correctly');
         }
-        else {
-            onlyString = JsontoString.slice(1, JsontoString.length - 1);
-            RemainingString = `[` + RemainingString + onlyString + `,{"id":${id},"myName":"${x.value}","Full":"${z.value}","myAge":"${y.value}"}]`;
-            setBio(JSON.parse(RemainingString));
-        }
+
     }
+
     return (
         <>
-            {Bio.map((element) => {
-                return (
-                    <>
-                        <h1>Task Name : {element.myName} , Task Id : {element.id} , Full : {element.Full}</h1>
-                        <button onClick={() => { ID(element.id) }}>Remove</button>
-                    </>)
-            })}
+            <div className="menu">
+                <div className='Labels'>
+                
+                <label htmlFor="">Task Name:  </label>
+                    <input id="Name" type="text" />
+                    </div>
+                {/* <br /> */}
+                <div className='Labels'>
+                
+                <label htmlFor="">Due Date: </label>
+                    <input id="date" type="date" />
+                    </div>
+                {/* <br /> */}
+                <div className='Labels'>
+                
+                <label htmlFor="">Due Time: </label>
+                    <input id="time" type="time" />
+                    </div>
+                {/* <br /> */}
+                <div className='Labels'>
+                
+                <label htmlFor="">Notes:  </label>
+                    <input id="Full" type="text" />
+                </div>
+                {/* <br /> */}
+                <button className='btn' onClick={Print}>Add</button>
+                <br />
+                {/* I was also going to say the same  */}
+            </div>
+            <Heading hdg="Tasks :" />
+            {
+                Bio.map((element) => {
+                    return (
+                        <>
+                            <div className='Card'>
+                                <h1 className='TaskName'>Task Name : {element.myName}</h1>
+                                <h2 className='Date'>Due Date : {element.DeadLineDate}</h2>
+                                <h2 className='Time'>Due Time : {element.DeadLineTime}</h2>
+                                <h3 className='Notes'>Notes : {element.Notes}</h3>
+                                <button className='btn' onClick={() => { ID(element.id) }}>Remove</button>
+                            </div>
+                        </>)
+                })}
             <br />
-            <label htmlFor="">Name:  </label>
-            <input id="Name" type="text" />
-            <br />
-            <label htmlFor="">Ageei:  </label>
-            <input id="Age" type="number" />
-            <br />
-            <label htmlFor="">Full:  </label>
-            <input id="Full" type="text" />
-            <br />
-            <button onClick={Print}>Add</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </>
     )
 }

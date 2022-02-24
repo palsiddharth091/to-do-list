@@ -5,8 +5,8 @@ import Heading from './components/Heading'
 function App() {
   return (
     <div className="App">
-    <Heading/>
-      <Task/>
+    <Heading hdg="To Do List App"/>
+      <div className="Tasks"><Task /></div>  
     </div>
   );
 }
