@@ -3,22 +3,10 @@ body {
   color: white;
   font-family: 'Quicksand', sans-serif;
 }
-/* body::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  background-color: #F5F5F5;
+footer{
+  text-align: center;
+  padding-bottom: 2rem;
 }
-
-body::-webkit-scrollbar {
-  width: 12px;
-  background-color: #F5F5F5;
-}
-
-body::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  background-color: orangered;
-} */
 body::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
   border-radius: 10px;
@@ -44,6 +32,7 @@ body::-webkit-scrollbar-thumb {
   margin: 3rem 3rem;
   padding: 1rem;
   transition: transform .5s;
+  cursor: pointer;
 }
 
 .Card:hover {
@@ -86,7 +75,10 @@ table {
   font-size: 2rem;
   margin-bottom: .25rem;
 }
-
+a{
+  text-decoration: none;
+  color: rgb(47, 113, 255);
+}
 .Date {
   font-size: 1.5rem;
   margin-bottom: .25rem;

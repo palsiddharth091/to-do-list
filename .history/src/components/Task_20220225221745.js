@@ -40,7 +40,7 @@ function Task() {
         console.log(y.value);
         console.log(z.value);
         console.log(w.value);
-        if (x.value !== '' && y.value !=='' && z.value !=='') {
+        if (x.value !== '' || y.value !=='' || z.value !== null) {
             let id = date.getTime();      
             let JsontoString = JSON.stringify(Bio);
             JsontoString = removeSlash(JsontoString)

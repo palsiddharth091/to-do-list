@@ -35,13 +35,9 @@ function Task() {
         let x = document.getElementById('Name');
         let y = document.getElementById('date');
         let z = document.getElementById('time');
-        let w = document.getElementById('Full');
-        console.log(x.value);
-        console.log(y.value);
-        console.log(z.value);
-        console.log(w.value);
-        if (x.value !== '' && y.value !=='' && z.value !=='') {
-            let id = date.getTime();      
+        if (x.value !== undefined || y.value != undefined || z.value !== undefined) {
+            let id = date.getTime();
+            let w = document.getElementById('Full');
             let JsontoString = JSON.stringify(Bio);
             JsontoString = removeSlash(JsontoString)
             let onlyString = "";
@@ -59,21 +55,19 @@ function Task() {
             alert('Enter Inputs correctly');
         }
         console.log(Bio.length);
-        x.value = '';
-        y.value = '';
-        z.value = '';
-        w.value = '';
+x.value=''
+x.value=''
     }
     { Bio.length === 0 ? document.title = `To Do List` : document.title = `(${Bio.length}) - To Do List` }
     return (
         <>
-
+           
             <div className="menu">
                 <table>
-                    <tr><td style={{ width: "10rem;" }} className='tble'><label className='Labels' htmlFor="">Task Name:  </label></td>   <td><input className='Data' id="Name" type="text" /></td></tr>
-                    <tr><td style={{ width: "10rem;" }} className='tble'><label className='Labels' htmlFor="">Due Date: </label></td>     <td><input className='Data' id="date" type="date" /></td></tr>
-                    <tr><td style={{ width: "10rem;" }} className='tble'><label className='Labels' htmlFor="">Due Time: </label></td>     <td><input className='Data' id="time" type="time" /></td></tr>
-                    <tr><td style={{ width: "10rem;" }} className='tble'><label className='Labels' htmlFor="">Notes:  </label></td>       <td><input className='Data' id="Full" type="text" /></td></tr>
+                    <tr><td style={{width:"10rem;"}}className='tble'><label className='Labels' htmlFor="">Task Name:  </label></td>   <td><input className='Data' id="Name" type="text" /></td></tr>
+                    <tr><td style={{width:"10rem;"}}className='tble'><label className='Labels' htmlFor="">Due Date: </label></td>     <td><input className='Data' id="date" type="date" /></td></tr>
+                    <tr><td style={{width:"10rem;"}}className='tble'><label className='Labels' htmlFor="">Due Time: </label></td>     <td><input className='Data' id="time" type="time" /></td></tr>
+                    <tr><td style={{width:"10rem;"}}className='tble'><label className='Labels' htmlFor="">Notes:  </label></td>       <td><input className='Data' id="Full" type="text" /></td></tr>
                 </table>
                 <center><button className='btn' onClick={Print}>Add</button></center>
                 <br />

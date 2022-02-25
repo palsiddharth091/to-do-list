@@ -38,9 +38,9 @@ function Task() {
         let w = document.getElementById('Full');
         console.log(x.value);
         console.log(y.value);
-        console.log(z.value);
-        console.log(w.value);
-        if (x.value !== '' && y.value !=='' && z.value !=='') {
+        console.log(.value);
+        console.log(x.value);
+        if (x.value !== '' || y.value != '' || z.value !== '') {
             let id = date.getTime();      
             let JsontoString = JSON.stringify(Bio);
             JsontoString = removeSlash(JsontoString)

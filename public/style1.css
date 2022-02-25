@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    background-color: black;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.container {
+    padding: 2rem;
+    text-align: center;
+    margin: 0;
+}
+
+#myProgress {
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    /* transition: transform .2s; */
+}
+
+/* 
+#myProgess:hover {
+    transform: scale(1.2);
+} */
+.image {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 11rem;
+}
+
+#myBar {
+    width: 0%;
+    height: 30px;
+    padding-top: 10px;
+    background-color: rgb(255, 204, 0);
+    color: black;
+    font-size: large;
+    font-weight: 600;
+    overflow: hidden;
+    text-align: left;
+    border-radius: 15px;
+    transition: transform .2s;
+}
+
+#myBar:hover {
+    transform: scale(1.1);
+}
+
+.loader-heading {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+
+.btn {
+    font-family: 'Quicksand', sans-serif;
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-image: linear-gradient(to right, red, yellow);
+    transition: transform .2s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    color: white;
+    background: linear-gradient(90deg, rgba(0, 12, 36, 1) 0%, rgba(9, 9, 121, 1) 36%, rgba(0, 212, 255, 1) 82%);
+}
+
+#txt {
+    padding-left: 5px;
+}
+
+@media only screen and (min-width: 600px) {
+    .image {
+        width: 21rem;
+        height: 21rem;
+    }
+
+    .loader-heading {
+        font-size: 4rem;
+    }
+
+    .container {
+        padding: 7rem 9rem;
+    }
+
+    .btn {
+        padding: 2rem 4rem;
+        font-size: 2.5rem;
+    }
+
+    #txt {
+        padding-left: 15px;
+    }
+}

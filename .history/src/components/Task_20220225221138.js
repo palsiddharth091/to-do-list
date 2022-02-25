@@ -35,13 +35,9 @@ function Task() {
         let x = document.getElementById('Name');
         let y = document.getElementById('date');
         let z = document.getElementById('time');
-        let w = document.getElementById('Full');
-        console.log(x.value);
-        console.log(y.value);
-        console.log(z.value);
-        console.log(w.value);
-        if (x.value !== '' && y.value !=='' && z.value !=='') {
-            let id = date.getTime();      
+        if (x.value !== undefined || y.value != undefined || z.value !== undefined) {
+            let id = date.getTime();
+            let w = document.getElementById('Full');
             let JsontoString = JSON.stringify(Bio);
             JsontoString = removeSlash(JsontoString)
             let onlyString = "";
@@ -62,7 +58,6 @@ function Task() {
         x.value = '';
         y.value = '';
         z.value = '';
-        w.value = '';
     }
     { Bio.length === 0 ? document.title = `To Do List` : document.title = `(${Bio.length}) - To Do List` }
     return (
