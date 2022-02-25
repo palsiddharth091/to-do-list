@@ -61,12 +61,13 @@ function Task() {
     { Bio.length === 0 ? document.title = `To Do List` : document.title = `(${Bio.length}) - To Do List` }
     return (
         <>
+           
             <div className="menu">
                 <table>
-                    <tr className='tble'><td><label className='Labels' htmlFor="">Task Name:  </label></td><td><input className='Data' id="Name" type="text" /></td></tr>
-                    <tr className='tble'><td><label className='Labels' htmlFor="">Due Date: </label></td><td><input className='Data' id="date" type="date" /></td></tr>
-                    <tr className='tble'><td><label className='Labels' htmlFor="">Due Time: </label></td><td><input className='Data' id="time" type="time" /></td></tr>
-                    <tr className='tble'><td><label className='Labels' htmlFor="">Notes:  </label></td><td><input className='Data' id="Full" type="text" /></td></tr>
+                    <tr><td style={{width:"10rem;"}}className='tble'><label className='Labels' htmlFor="">Task Name:  </label></td>   <td><input className='Data' id="Name" type="text" /></td></tr>
+                    <tr><td style={{width:"10rem;"}}className='tble'><label className='Labels' htmlFor="">Due Date: </label></td>     <td><input className='Data' id="date" type="date" /></td></tr>
+                    <tr><td style={{width:"10rem;"}}className='tble'><label className='Labels' htmlFor="">Due Time: </label></td>     <td><input className='Data' id="time" type="time" /></td></tr>
+                    <tr><td style={{width:"10rem;"}}className='tble'><label className='Labels' htmlFor="">Notes:  </label></td>       <td><input className='Data' id="Full" type="text" /></td></tr>
                 </table>
                 <center><button className='btn' onClick={Print}>Add</button></center>
                 <br />
