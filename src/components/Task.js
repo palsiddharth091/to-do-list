@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import Heading from './Heading';
+import LoadingBar from 'react-top-loading-bar'
 function Task() {
     const Arr = []
+    const [progress, setProgress] = useState(0);
     const [Bio, setBio] = useState(Arr);
     const removeSlash = (Element) => {
         let str = "";
@@ -32,6 +34,7 @@ function Task() {
     let RemainingString = "";
     let date = new Date();
     const Print = () => {
+        setProgress(10);
         let x = document.getElementById('Name');
         let y = document.getElementById('date');
         let z = document.getElementById('time');
@@ -41,6 +44,7 @@ function Task() {
         console.log(z.value);
         console.log(w.value);
         if (x.value !== '' && y.value !=='' && z.value !=='') {
+            setProgress(50);
             let id = date.getTime();      
             let JsontoString = JSON.stringify(Bio);
             JsontoString = removeSlash(JsontoString)
@@ -58,22 +62,29 @@ function Task() {
         } else {
             alert('Enter Inputs correctly');
         }
+        setProgress(70);
         console.log(Bio.length);
         x.value = '';
         y.value = '';
         z.value = '';
         w.value = '';
+        setProgress(100);
     }
     { Bio.length === 0 ? document.title = `To Do List` : document.title = `(${Bio.length}) - To Do List` }
     return (
         <>
-
+            <LoadingBar
+                color='#f11946'
+                progress={progress}
+                height={2.5}  
+                onLoaderFinished={() => setProgress(0)}
+            />
             <div className="menu">
                 <table>
-                    <tr><td style={{ width: "10rem;" }} className='tble'><label className='Labels' htmlFor="">Task Name:  </label></td>   <td><input className='Data' id="Name" type="text" /></td></tr>
-                    <tr><td style={{ width: "10rem;" }} className='tble'><label className='Labels' htmlFor="">Due Date: </label></td>     <td><input className='Data' id="date" type="date" /></td></tr>
-                    <tr><td style={{ width: "10rem;" }} className='tble'><label className='Labels' htmlFor="">Due Time: </label></td>     <td><input className='Data' id="time" type="time" /></td></tr>
-                    <tr><td style={{ width: "10rem;" }} className='tble'><label className='Labels' htmlFor="">Notes:  </label></td>       <td><input className='Data' id="Full" type="text" /></td></tr>
+                    <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Task Name:  </label></td>   <td><input className='Data' id="Name" type="text" /></td></tr>
+                    <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Due Date: </label></td>     <td><input className='Data' id="date" type="date" /></td></tr>
+                    <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Due Time: </label></td>     <td><input className='Data' id="time" type="time" /></td></tr>
+                    <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Notes:  </label></td>       <td><input className='Data' id="Full" type="text" /></td></tr>
                 </table>
                 <center><button className='btn' onClick={Print}>Add</button></center>
                 <br />
