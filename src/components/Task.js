@@ -77,6 +77,7 @@ function Task() {
                 color='#f11946'
                 progress={progress}
                 height={2.5}  
+                loaderSpeed={700}
                 onLoaderFinished={() => setProgress(0)}
             />
             <div className="menu">
