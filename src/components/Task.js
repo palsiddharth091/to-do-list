@@ -3,6 +3,7 @@ import Heading from './Heading';
 function Task() {
     const Arr = []
     const [Bio, setBio] = useState(Arr);
+    // const [Length, setLength] = useState(0)
     const removeSlash = (Element) => {
         let str = "";
         for (let index = 0; index < Element.length; index++) {
@@ -54,41 +55,23 @@ function Task() {
         } else {
             alert('Enter Inputs correctly');
         }
+        console.log(Bio.length);
 
     }
-
+    { Bio.length === 0 ? document.title = `To Do List` : document.title = `(${Bio.length}) - To Do List` }
     return (
         <>
             <div className="menu">
-                <div className='Labels'>
-                
-                <label htmlFor="">Task Name:  </label>
-                    <input id="Name" type="text" />
-                    </div>
-                {/* <br /> */}
-                <div className='Labels'>
-                
-                <label htmlFor="">Due Date: </label>
-                    <input id="date" type="date" />
-                    </div>
-                {/* <br /> */}
-                <div className='Labels'>
-                
-                <label htmlFor="">Due Time: </label>
-                    <input id="time" type="time" />
-                    </div>
-                {/* <br /> */}
-                <div className='Labels'>
-                
-                <label htmlFor="">Notes:  </label>
-                    <input id="Full" type="text" />
-                </div>
-                {/* <br /> */}
-                <button className='btn' onClick={Print}>Add</button>
+                <table>
+                    <tr className='tble'><td><label className='Labels' htmlFor="">Task Name:  </label></td><td><input className='Data' id="Name" type="text" /></td></tr>
+                    <tr className='tble'><td><label className='Labels' htmlFor="">Due Date: </label></td><td><input className='Data' id="date" type="date" /></td></tr>
+                    <tr className='tble'><td><label className='Labels' htmlFor="">Due Time: </label></td><td><input className='Data' id="time" type="time" /></td></tr>
+                    <tr className='tble'><td><label className='Labels' htmlFor="">Notes:  </label></td><td><input className='Data' id="Full" type="text" /></td></tr>
+                </table>
+                <center><button className='btn' onClick={Print}>Add</button></center>
                 <br />
-                {/* I was also going to say the same  */}
             </div>
-            <Heading hdg="Tasks :" />
+            <Heading hdg={Bio.length === 0 ? `` : `Tasks left - ${Bio.length} :`} />
             {
                 Bio.map((element) => {
                     return (
@@ -102,22 +85,6 @@ function Task() {
                             </div>
                         </>)
                 })}
-            <br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </>
     )
 }
