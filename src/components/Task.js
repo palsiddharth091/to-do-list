@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
 import Heading from './Heading';
 import LoadingBar from 'react-top-loading-bar'
+import moment from 'moment';
+const min_date = new Date();
+const dt = moment(min_date).format('YYYY-MM-DD');
+const time = moment(min_date).format('HH:mm');
+let date = new Date();
 function Task() {
     const Arr = []
     const [progress, setProgress] = useState(0);
     const [Bio, setBio] = useState(Arr);
+    //    const dt = useState(null);
+
     const removeSlash = (Element) => {
         let str = "";
         for (let index = 0; index < Element.length; index++) {
@@ -32,38 +39,37 @@ function Task() {
         setBio(newArray);
     }
     let RemainingString = "";
-    let date = new Date();
     const Print = () => {
         setProgress(10);
         let x = document.getElementById('Name');
         let y = document.getElementById('date');
         let z = document.getElementById('time');
         let w = document.getElementById('Full');
-        console.log(x.value);
-        console.log(y.value);
-        console.log(z.value);
-        console.log(w.value);
-        if (x.value !== '' && y.value !=='' && z.value !=='') {
-            setProgress(50);
-            let id = date.getTime();      
-            let JsontoString = JSON.stringify(Bio);
-            JsontoString = removeSlash(JsontoString)
-            let onlyString = "";
-            if (JsontoString === "[]") {
-                onlyString = JsontoString.slice(0, JsontoString.length - 1);
-                RemainingString = RemainingString + onlyString + `{"id":${id},"myName":"${x.value}","Notes":"${w.value}","DeadLineTime":"${z.value}","DeadLineDate":"${y.value}"}]`;
-                setBio(JSON.parse(RemainingString));
+        if (x.value !== '' && y.value !== '' && z.value !== '') {
+            if (y.value === dt && z.value < time) {
+                alert('Invalid Date/Time');
             }
             else {
-                onlyString = JsontoString.slice(1, JsontoString.length - 1);
-                RemainingString = `[` + RemainingString + onlyString + `,{"id":${id},"myName":"${x.value}","Notes":"${w.value}","DeadLineTime":"${z.value}","Full":"${z.value}","DeadLineDate":"${y.value}"}]`;
-                setBio(JSON.parse(RemainingString));
+                setProgress(50);
+                let id = date.getTime();
+                let JsontoString = JSON.stringify(Bio);
+                JsontoString = removeSlash(JsontoString)
+                let onlyString = "";
+                if (JsontoString === "[]") {
+                    onlyString = JsontoString.slice(0, JsontoString.length - 1);
+                    RemainingString = RemainingString + onlyString + `{"id":${id},"myName":"${x.value}","Notes":"${w.value}","DeadLineTime":"${z.value}","DeadLineDate":"${y.value}"}]`;
+                    setBio(JSON.parse(RemainingString));
+                }
+                else {
+                    onlyString = JsontoString.slice(1, JsontoString.length - 1);
+                    RemainingString = `[` + RemainingString + onlyString + `,{"id":${id},"myName":"${x.value}","Notes":"${w.value}","DeadLineTime":"${z.value}","Full":"${z.value}","DeadLineDate":"${y.value}"}]`;
+                    setBio(JSON.parse(RemainingString));
+                }
             }
         } else {
             alert('Enter Inputs correctly');
         }
         setProgress(70);
-        console.log(Bio.length);
         x.value = '';
         y.value = '';
         z.value = '';
@@ -76,14 +82,14 @@ function Task() {
             <LoadingBar
                 color='#f11946'
                 progress={progress}
-                height={2.5}  
+                height={2.5}
                 loaderSpeed={700}
                 onLoaderFinished={() => setProgress(0)}
             />
             <div className="menu">
                 <table>
                     <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Task Name:  </label></td>   <td><input className='Data' id="Name" type="text" /></td></tr>
-                    <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Due Date: </label></td>     <td><input className='Data' id="date" type="date" /></td></tr>
+                    <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Due Date: </label></td>     <td><input className='Data' id="date" min={dt} type="date" /></td></tr>
                     <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Due Time: </label></td>     <td><input className='Data' id="time" type="time" /></td></tr>
                     <tr><td style={{ width: "10rem" }} className='tble'><label className='Labels' htmlFor="">Notes:  </label></td>       <td><input className='Data' id="Full" type="text" /></td></tr>
                 </table>
