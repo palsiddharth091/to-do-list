@@ -2,16 +2,17 @@ import React, { useState } from 'react'
 import Heading from './Heading';
 import LoadingBar from 'react-top-loading-bar'
 import moment from 'moment';
-const min_date = new Date();
-const dt = moment(min_date).format('YYYY-MM-DD');
-const time = moment(min_date).format('HH:mm');
-let date = new Date();
+// const min_date = new Date();
+// const dt = moment(min_date).format('YYYY-MM-DD');
+// const time = moment(min_date).format('HH:mm');
+
 function Task() {
+    let date = new Date();
     const Arr = []
     const [progress, setProgress] = useState(0);
     const [Bio, setBio] = useState(Arr);
-    //    const dt = useState(null);
-
+    const [dt, setdt] = useState(moment(date).format('YYYY-MM-DD'))
+    const [time, setTime] = useState(moment(date).format('HH:mm'))
     const removeSlash = (Element) => {
         let str = "";
         for (let index = 0; index < Element.length; index++) {
@@ -38,6 +39,12 @@ function Task() {
         // return_the_array based on the condition. Eg. return element.id > id    })
         setBio(newArray);
     }
+    // const settime = () =>{
+    //     setTime(moment(date).format('HH:mm'))
+    // }
+    // setInterval(() => {
+    //     setTime(moment(date).format('HH:mm'));
+    // }, 20000);
     let RemainingString = "";
     const Print = () => {
         setProgress(10);
