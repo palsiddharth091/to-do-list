@@ -8,7 +8,7 @@ export class MyComponent extends React.Component {
     }
     render() {
         return (
-            <h1 className='Clock'><Clock format={'dddd - D/MM/YYYY HH:mm:ss'} ticking={true} timezone={'Asia / Kolkata'} /> </h1>
+            <h1 className='Clock'><Clock format={'dddd - D/MM/YYYY HH:mm:ss'} ticking={true}/> </h1>
         );
     }
 }
